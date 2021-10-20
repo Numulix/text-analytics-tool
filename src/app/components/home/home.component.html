@@ -16,10 +16,12 @@
     </div>
 
     <div class="col-md-10 mx-auto col-lg-5">
-      <form
+        <form
         class="p-4 p-md-5 border rounded-3 bg-light"
         (ngSubmit)="onSubmit()"
-      >
+        >
+        <h2 *ngIf="!tokenExists">Add new token</h2>
+        <h2 *ngIf="tokenExists">Change your token</h2>
         <div class="form-floating mb-3">
           <input
             type="text"

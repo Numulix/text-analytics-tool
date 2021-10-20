@@ -12,10 +12,14 @@ export class HomeComponent implements OnInit {
   tokenString: string = '';
   valid: boolean = false;
   invalid: boolean = false;
+  tokenExists: boolean = false;
 
   constructor(private dandelion: DandelionService) { }
 
   ngOnInit(): void {
+    if (this.dandelion.apiToken) {
+      this.tokenExists = true;
+    }
   }
 
   onSubmit(): void {
@@ -24,6 +28,8 @@ export class HomeComponent implements OnInit {
         this.valid = true;
         this.invalid = false;
         this.dandelion.apiToken = this.tokenString;
+        this.tokenExists = true;
+        this.dandelion.sendMessage(true);
       },
       error => {
         if (error instanceof HttpErrorResponse) {
