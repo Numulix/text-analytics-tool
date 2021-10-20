@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { DandelionService } from 'src/app/services/dandelion.service';
 
@@ -15,8 +16,15 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit() {
-    
+  onSubmit(): void {
+    this.dandelion.checkTokenValidity(this.tokenString).subscribe(
+      () => {},
+      error => {
+        if (error instanceof HttpErrorResponse) {
+          console.log(error.status)
+        }
+      }
+    )
   }
 
 }
