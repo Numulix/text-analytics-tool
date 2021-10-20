@@ -10,6 +10,8 @@ import { DandelionService } from 'src/app/services/dandelion.service';
 export class HomeComponent implements OnInit {
 
   tokenString: string = '';
+  valid: boolean = false;
+  invalid: boolean = false;
 
   constructor(private dandelion: DandelionService) { }
 
@@ -18,10 +20,16 @@ export class HomeComponent implements OnInit {
 
   onSubmit(): void {
     this.dandelion.checkTokenValidity(this.tokenString).subscribe(
-      () => {},
+      () => {
+        this.valid = true;
+        this.invalid = false;
+        this.dandelion.apiToken = this.tokenString;
+      },
       error => {
         if (error instanceof HttpErrorResponse) {
-          console.log(error.status)
+          console.log(error.message)
+          this.valid = false;
+          this.invalid = true;
         }
       }
     )

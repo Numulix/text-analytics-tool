@@ -16,13 +16,26 @@
     </div>
 
     <div class="col-md-10 mx-auto col-lg-5">
-        <form class="p-4 p-md-5 border rounded-3 bg-light" (ngSubmit)="onSubmit()">
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" name="token" required [(ngModel)]="tokenString">
-                <label>Token</label>
-            </div>
-            <button type="submit" class="w-100 btn btn-lg btn-primary">Submit and Check</button>
-        </form>
+      <form
+        class="p-4 p-md-5 border rounded-3 bg-light"
+        (ngSubmit)="onSubmit()"
+      >
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            name="token"
+            required
+            [(ngModel)]="tokenString"
+          />
+          <label>Token</label>
+        </div>
+        <button type="submit" class="w-100 btn btn-lg btn-primary">
+          Submit and Check
+        </button>
+        <p *ngIf="valid" class="text-success">Token is valid</p>
+        <p *ngIf="invalid" class="text-danger">Token is NOT valid</p>
+      </form>
     </div>
   </div>
 </div>
