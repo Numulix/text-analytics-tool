@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DandelionService } from 'src/app/services/dandelion.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  tokenString: string = '';
+
+  constructor(private dandelion: DandelionService) { }
 
   ngOnInit(): void {
+  }
+
+  onSubmit() {
+    
   }
 
 }
