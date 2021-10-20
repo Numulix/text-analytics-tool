@@ -9,7 +9,7 @@
       "
     >
       <a
-        href="/"
+        [routerLink]="['/']"
         class="
           d-flex
           align-items-center
@@ -35,16 +35,16 @@
         *ngIf="tokenExists"
       >
         <li class="nav-item">
-          <a href="#" class="nav-link px-2 text-white">Entity Extraction</a>
+          <a [routerLink]="['/nex']" class="nav-link px-2 text-white">Entity Extraction</a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link px-2 text-white">Text Similarity</a>
+          <a [routerLink]="['/sim']" class="nav-link px-2 text-white">Text Similarity</a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link px-2 text-white">Language Detection</a>
+          <a [routerLink]="['/li']" class="nav-link px-2 text-white">Language Detection</a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link px-2 text-white">Sentiment Analysis</a>
+          <a [routerLink]="['/sent']" class="nav-link px-2 text-white">Sentiment Analysis</a>
         </li>
       </ul>
     </div>
