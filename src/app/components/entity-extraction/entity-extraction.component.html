@@ -1,7 +1,7 @@
 <div class="container" style="margin-top: 15px">
-  <h1>Entity Extraction</h1>
+  <h1 class="text-center">Entity Extraction</h1>
   <div class="col-md-10 mx-auto col-lg-5">
-    <form class="p-4 p-md-5 border rounded-3 bg-light" (onSubmit)="onSubmit()">
+    <form class="p-4 p-md-5 border rounded-3 bg-light" (ngSubmit)="onSubmit()">
       <div class="mb-3">
         <label class="form-label">Text</label>
         <textarea
@@ -20,6 +20,7 @@
           type="range"
           #minconf
           class="form-range"
+          value="0"
           min="0"
           max="1"
           step="0.01"
@@ -61,5 +62,24 @@
       </div>
       <button type="submit" class="btn btn-primary w-100 btn-lg">Submit</button>
     </form>
+  </div>
+
+  <div class="col-lg-7 text-center text-lg-start">
+    <div class="row justify-content-center">
+      <div class="col-4" *ngFor="let annotation of annotations">
+        <div class="card">
+          <img *ngIf="annotation.image" src="{{ annotation.image.thumbnail }}" alt="{{ annotation.label }}" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">{{ annotation.label }}</h5>
+            <p *ngIf="annotation.abstract" class="card-text">{{ annotation.abstract }}</p>
+          </div>
+          <div *ngIf="annotation.categories">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" *ngFor="let category of annotation.categories">{{ category }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

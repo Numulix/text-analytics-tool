@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Annotation } from 'src/app/models';
+import { DandelionService } from 'src/app/services/dandelion.service';
 
 @Component({
   selector: 'app-entity-extraction',
@@ -13,8 +15,10 @@ export class EntityExtractionComponent implements OnInit {
     min_confidence: 0,
     include: '',
   };
+  annotations: Annotation[] = [];
 
-  constructor() { }
+
+  constructor(private dandelion: DandelionService) { }
 
   ngOnInit(): void {
   }
@@ -24,7 +28,13 @@ export class EntityExtractionComponent implements OnInit {
   }
 
   onSubmit(): void {
-    
+    if (this.includeArray.length != 0) this.entityFormData.include = this.includeArray.join()
+    console.log(this.entityFormData);
+
+    this.dandelion.sendEntityExtractionRequest(this.entityFormData).subscribe(
+      response => this.annotations = response.annotations,
+      err => console.error(err)
+    )
   }
 
   handleIncludeCheck(event: any) {
