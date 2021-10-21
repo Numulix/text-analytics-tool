@@ -17,6 +17,7 @@
 
     <div class="col-md-10 mx-auto col-lg-5">
         <form
+        autocomplete="off"
         class="p-4 p-md-5 border rounded-3 bg-light"
         (ngSubmit)="onSubmit()"
         >
@@ -32,8 +33,11 @@
           />
           <label>Token</label>
         </div>
-        <button type="submit" class="w-100 btn btn-lg btn-primary">
-          Submit and Check
+        <button type="submit" class="w-100 btn btn-lg btn-primary" [disabled]="loading">
+          <div *ngIf="loading" class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div *ngIf="!loading">Submit and Check</div>
         </button>
         <p *ngIf="valid" class="text-success">Token is valid</p>
         <p *ngIf="invalid" class="text-danger">Token is NOT valid</p>
