@@ -50,9 +50,10 @@ export class DandelionService {
   }): Observable<TextSimilarityResponse> {
     let params = new HttpParams()
       .set('text1', formData.text1)
-      .set('text2', formData.text2);
+      .set('text2', formData.text2)
+      .set('token', this.apiToken);
 
-    return this.http.get<TextSimilarityResponse>(`${env.BASE_URL}/si/v1/`, {
+    return this.http.get<TextSimilarityResponse>(`${env.BASE_URL}/sim/v1/`, {
       params: params
     })
   }
