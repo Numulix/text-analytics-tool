@@ -7,9 +7,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EntityExtractionComponent implements OnInit {
 
+  entityFormData = {
+    text: '',
+    min_confidence: 0,
+    include: '',
+  }
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  setMinConf(value: string) {
+    this.entityFormData.min_confidence = parseFloat(value);
+  }
+
+  onSubmit(): void {
+    
   }
 
 }
