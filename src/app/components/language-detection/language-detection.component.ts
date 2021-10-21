@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DetectedLanguages } from 'src/app/models';
+import { DandelionService } from 'src/app/services/dandelion.service';
 
 @Component({
   selector: 'app-language-detection',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LanguageDetectionComponent implements OnInit {
 
-  constructor() { }
+  loading: boolean = false;
+  text: string = '';
+  clean: boolean = false;
+  detectedLanguages: DetectedLanguages[] = []
+
+  constructor(private dandelion: DandelionService) { }
 
   ngOnInit(): void {
+  }
+
+  onSubmit() {
+    this.loading = true;
+    this.dandelion.sendLanguageDetectionRequest({ text: this.text, clean: this.clean })
+      .subscribe(response => {
+        this.detectedLanguages = response.detectedLangs;
+        this.loading = false;
+      })
   }
 
 }

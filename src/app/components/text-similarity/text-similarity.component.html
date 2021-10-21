@@ -1,1 +1,36 @@
-<p>text-similarity works!</p>
+<div class="container">
+  <h1 class="text-center">Text Similarity</h1>
+  <div class="col-6">
+    <form class="p-4 p-md-5 border rounded-3 bg-light" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label class="form-label">First text</label>
+        <textarea
+          [(ngModel)]="firstText"
+          class="form-control"
+          name="text-1"
+          rows="10"
+        ></textarea>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Second Text</label>
+        <textarea
+          [(ngModel)]="secondText"
+          class="form-control"
+          name="text-2"
+          rows="10"
+        ></textarea>
+      </div>
+      <button type="submit" class="w-100 btn btn-lg btn-primary">
+        <div *ngIf="loading" class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div *ngIf="!loading">Submit</div>
+      </button>
+    </form>
+  </div>
+
+  <div *ngIf="similarity > 0" class="col-6">
+      <h1 class="text-center">Similarity Result</h1>
+      <h2 class="text-center">{{ similarity }}</h2>
+  </div>
+</div>
