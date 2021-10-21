@@ -1,14 +1,63 @@
-<div class="container" style="margin-top: 15px;">
+<div class="container" style="margin-top: 15px">
   <h1>Entity Extraction</h1>
   <div class="col-md-10 mx-auto col-lg-5">
     <form class="p-4 p-md-5 border rounded-3 bg-light" (onSubmit)="onSubmit()">
-      <div class="form-floating mb-3">
-        <textarea class="form-control" type="text" required [(ngModel)]="entityFormData.text"></textarea>
-        <label>Text</label>
+      <div class="mb-3">
+        <label class="form-label">Text</label>
+        <textarea
+          class="form-control"
+          name="text"
+          type="text"
+          required
+          [(ngModel)]="entityFormData.text"
+        ></textarea>
       </div>
-      <p>Min confidence: {{ entityFormData.min_confidence }}</p>
-      <div class="form-floating mb-3">
-        <input type="range" #minconf class="form-range" min="0" max="1" step="0.01" (input)="setMinConf(minconf.value)">
+      <div class="mb-3">
+        <label class="form-label"
+          >Min confidence: {{ entityFormData.min_confidence }}</label
+        >
+        <input
+          type="range"
+          #minconf
+          class="form-range"
+          min="0"
+          max="1"
+          step="0.01"
+          (input)="setMinConf(minconf.value)"
+        />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Include</label>
+        <div class="form-check">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            name="image"
+            value="image"
+            (change)="handleIncludeCheck($event)"
+          />
+          <label class="form-check-label">Image</label>
+        </div>
+        <div class="form-check">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            name="abstract"
+            value="abstract"
+            (change)="handleIncludeCheck($event)"
+          />
+          <label class="form-check-label"> Abstract </label>
+        </div>
+        <div class="form-check">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            name="categories"
+            value="categories"
+            (change)="handleIncludeCheck($event)"
+          />
+          <label class="form-check-label">Categories</label>
+        </div>
       </div>
       <button type="submit" class="btn btn-primary w-100 btn-lg">Submit</button>
     </form>
