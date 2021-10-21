@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { environment as env } from 'src/environments/environment';
-import { EntityExtractionResponse, TextSimilarityResponse } from '../models';
+import { EntityExtractionResponse, LanguageDetectionResponse, TextSimilarityResponse } from '../models';
 
 @Injectable({
   providedIn: 'root',
@@ -54,6 +54,20 @@ export class DandelionService {
       .set('token', this.apiToken);
 
     return this.http.get<TextSimilarityResponse>(`${env.BASE_URL}/sim/v1/`, {
+      params: params
+    })
+  }
+
+  sendLanguageDetectionRequest(formData: {
+    text: string;
+    clean: boolean;
+  }): Observable<LanguageDetectionResponse> {
+    let params = new HttpParams()
+      .set('text', formData.text)
+      .set('clean', formData.clean)
+      .set('token', this.apiToken);
+
+    return this.http.get<LanguageDetectionResponse>(`${env.BASE_URL}/li/v1/`, {
       params: params
     })
   }

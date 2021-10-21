@@ -17,3 +17,13 @@ export interface TextSimilarityResponse {
     timestamp: Date;
     similarity: number;
 }
+
+export interface LanguageDetectionResponse {
+    timestamp: Date;
+    detectedLangs: DetectedLanguages[]
+}
+
+export interface DetectedLanguages {
+    lang: string;
+    confidence: number;
+}
