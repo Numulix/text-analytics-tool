@@ -2,7 +2,12 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { environment as env } from 'src/environments/environment';
-import { EntityExtractionResponse, LanguageDetectionResponse, TextSimilarityResponse } from '../models';
+import {
+  EntityExtractionResponse,
+  LanguageDetectionResponse,
+  SentimentAnalysisResponse,
+  TextSimilarityResponse,
+} from '../models';
 
 @Injectable({
   providedIn: 'root',
@@ -54,8 +59,8 @@ export class DandelionService {
       .set('token', this.apiToken);
 
     return this.http.get<TextSimilarityResponse>(`${env.BASE_URL}/sim/v1/`, {
-      params: params
-    })
+      params: params,
+    });
   }
 
   sendLanguageDetectionRequest(formData: {
@@ -68,7 +73,24 @@ export class DandelionService {
       .set('token', this.apiToken);
 
     return this.http.get<LanguageDetectionResponse>(`${env.BASE_URL}/li/v1/`, {
-      params: params
-    })
+      params: params,
+    });
+  }
+
+  sendSentimentAnalysisRequest(formData: {
+    lang: string;
+    text: string;
+  }): Observable<SentimentAnalysisResponse> {
+    let params = new HttpParams()
+      .set('lang', formData.lang)
+      .set('text', formData.text)
+      .set('token', this.apiToken);
+
+    return this.http.get<SentimentAnalysisResponse>(
+      `${env.BASE_URL}/sent/v1/`,
+      {
+        params: params,
+      }
+    );
   }
 }
