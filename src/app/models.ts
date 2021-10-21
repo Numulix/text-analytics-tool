@@ -12,3 +12,8 @@ export interface Annotation {
         thumbnail: string;
     };
 }
+
+export interface TextSimilarityResponse {
+    timestamp: Date;
+    similarity: number;
+}

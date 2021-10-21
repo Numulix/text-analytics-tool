@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { environment as env } from 'src/environments/environment';
-import { EntityExtractionResponse } from '../models';
+import { EntityExtractionResponse, TextSimilarityResponse } from '../models';
 
 @Injectable({
   providedIn: 'root',
@@ -38,9 +38,22 @@ export class DandelionService {
       .set('min_confidence', formData.min_confidence)
       .set('include', formData.include)
       .set('token', this.apiToken);
-    
+
     return this.http.get<EntityExtractionResponse>(`${env.BASE_URL}/nex/v1/`, {
       params: params,
     });
+  }
+
+  sendTextSimilarityRequest(formData: {
+    text1: string;
+    text2: string;
+  }): Observable<TextSimilarityResponse> {
+    let params = new HttpParams()
+      .set('text1', formData.text1)
+      .set('text2', formData.text2);
+
+    return this.http.get<TextSimilarityResponse>(`${env.BASE_URL}/si/v1/`, {
+      params: params
+    })
   }
 }
