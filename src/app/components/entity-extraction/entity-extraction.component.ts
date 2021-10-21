@@ -16,6 +16,7 @@ export class EntityExtractionComponent implements OnInit {
     include: '',
   };
   annotations: Annotation[] = [];
+  loading: boolean = false;
 
 
   constructor(private dandelion: DandelionService) { }
@@ -30,10 +31,16 @@ export class EntityExtractionComponent implements OnInit {
   onSubmit(): void {
     if (this.includeArray.length != 0) this.entityFormData.include = this.includeArray.join()
     console.log(this.entityFormData);
-
+    this.loading = true;
     this.dandelion.sendEntityExtractionRequest(this.entityFormData).subscribe(
-      response => this.annotations = response.annotations,
-      err => console.error(err)
+      response => {
+        this.annotations = response.annotations
+        this.loading = false;
+      },
+      err => {
+        console.error(err);
+        this.loading = false;
+      }
     )
   }
 
