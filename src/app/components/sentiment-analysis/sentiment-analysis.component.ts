@@ -16,6 +16,16 @@ export class SentimentAnalysisComponent implements OnInit {
     type: ''
   }
 
+  sentimentTest: number = -1;
+
+  private colorRed = { r: 255, g: 0, b: 0 }
+  private colorGreen = { r: 0, g: 255, b: 0 }
+  sentimentColor = { 
+    r: this.colorRed.r + (this.colorGreen.r - this.colorRed.r) * this.normalizeValue(this.sentimentTest), 
+    g: this.colorRed.g + (this.colorGreen.g - this.colorRed.g) * this.normalizeValue(this.sentimentTest), 
+    b: this.colorRed.b + (this.colorGreen.b - this.colorRed.b) * this.normalizeValue(this.sentimentTest) 
+  }
+
   options = [
     { id: 'auto', name: 'Auto Detect' },
     { id: 'en', name: 'English' },
@@ -39,6 +49,10 @@ export class SentimentAnalysisComponent implements OnInit {
 
   handleChange(event: any) {
     this.lang = event.target.value;
+  }
+
+  normalizeValue(value: number): number {
+    return (value - (-1)) / (1 - (-1));
   }
 
 }
