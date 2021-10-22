@@ -36,7 +36,7 @@
       </form>
     </div>
 
-    <div class="col-4">
+    <div class="col-8" *ngIf="sentiment.type">
       <!-- <input type="number" class="form-control" [(ngModel)]="sentimentTest" />
       <div
         style="width: 100%; height: 50px"
@@ -51,6 +51,22 @@
             ')'
         }"
       ></div> -->
+      <h3 class="text-center">Sentiment Analysis Result:</h3>
+      <h1
+        class="text-center"
+        [ngStyle]="{
+          'background-color':
+            'rgb(' +
+            this.sentimentColor.r +
+            ', ' +
+            this.sentimentColor.g +
+            ', ' +
+            this.sentimentColor.b +
+            ')'
+        }"
+      >
+        {{ sentiment.score }} - {{ sentiment.type }}
+      </h1>
     </div>
   </div>
 </div>
