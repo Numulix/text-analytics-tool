@@ -17,6 +17,9 @@ export class HomeComponent implements OnInit {
   constructor(private dandelion: DandelionService) {}
 
   ngOnInit(): void {
+    if (localStorage.getItem('tokenKey')) {
+      this.dandelion.apiToken = localStorage.getItem('tokenKey')!
+    }
     if (this.dandelion.apiToken) {
       this.tokenExists = true;
     }
@@ -31,6 +34,7 @@ export class HomeComponent implements OnInit {
         this.dandelion.apiToken = this.tokenString;
         this.tokenExists = true;
         this.dandelion.sendMessage(true);
+        localStorage.setItem('tokenKey', this.tokenString)
         this.tokenString = '';
         this.loading = false;
       },

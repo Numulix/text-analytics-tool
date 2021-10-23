@@ -16,6 +16,9 @@ export class HeaderComponent implements OnInit {
     this.dandelion.onMessage().subscribe(flag => {
       this.tokenExists = flag;
     })
+    if (localStorage.getItem('tokenKey')) {
+      this.tokenExists = true;
+    }
   }
 
 }

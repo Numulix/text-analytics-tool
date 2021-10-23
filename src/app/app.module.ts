@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -11,6 +11,7 @@ import { EntityExtractionComponent } from './components/entity-extraction/entity
 import { TextSimilarityComponent } from './components/text-similarity/text-similarity.component';
 import { LanguageDetectionComponent } from './components/language-detection/language-detection.component';
 import { SentimentAnalysisComponent } from './components/sentiment-analysis/sentiment-analysis.component';
+import { DandelionService } from './services/dandelion.service';
 
 @NgModule({
   declarations: [

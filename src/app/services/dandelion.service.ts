@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { environment as env } from 'src/environments/environment';
 import {
@@ -12,12 +12,17 @@ import {
 @Injectable({
   providedIn: 'root',
 })
-export class DandelionService {
+export class DandelionService implements OnInit {
   public apiToken: string = '';
 
   visibleSubject = new Subject<boolean>();
 
   constructor(private http: HttpClient) {}
+
+  ngOnInit(): void {
+    this.apiToken = localStorage.getItem('tokenKey') || '';
+    console.log(this.apiToken);
+  }
 
   checkTokenValidity(token: string): Observable<any> {
     return this.http.get<any>(`${env.BASE_URL}/nex/v1/`, {
