@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Annotation } from 'src/app/models';
 import { DandelionService } from 'src/app/services/dandelion.service';
+import { HistoryService } from 'src/app/services/history.service';
+import { environment as env } from 'src/environments/environment';
 
 @Component({
   selector: 'app-entity-extraction',

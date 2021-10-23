@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EntityExtractionComponent } from './components/entity-extraction/entity-extraction.component';
+import { HistoryComponent } from './components/history/history.component';
 import { HomeComponent } from './components/home/home.component';
 import { LanguageDetectionComponent } from './components/language-detection/language-detection.component';
 import { SentimentAnalysisComponent } from './components/sentiment-analysis/sentiment-analysis.component';
@@ -33,6 +34,11 @@ const routes: Routes = [
     component: SentimentAnalysisComponent,
     canActivate: [ValidTokenGuard]
   },
+  {
+    path: 'history',
+    component: HistoryComponent,
+    canActivate: [ValidTokenGuard]
+  }
 ];
 
 @NgModule({

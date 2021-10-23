@@ -35,3 +35,8 @@ export interface SentimentAnalysisResponse {
     type: string;
   };
 }
+
+export interface Log {
+  timestamp: Date;
+  endpoint: string;
+}

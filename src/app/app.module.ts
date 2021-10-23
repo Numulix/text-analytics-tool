@@ -12,6 +12,7 @@ import { TextSimilarityComponent } from './components/text-similarity/text-simil
 import { LanguageDetectionComponent } from './components/language-detection/language-detection.component';
 import { SentimentAnalysisComponent } from './components/sentiment-analysis/sentiment-analysis.component';
 import { DandelionService } from './services/dandelion.service';
+import { HistoryComponent } from './components/history/history.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { DandelionService } from './services/dandelion.service';
     TextSimilarityComponent,
     LanguageDetectionComponent,
     SentimentAnalysisComponent,
+    HistoryComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
