@@ -1,3 +1,12 @@
 <div class="container">
-    
+  <div class="row mx-auto">
+    <div class="col-6">
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let log of history.logs">
+          [{{ log.timestamp | date: "d.M.yyyy, h:mm:ss" }}] GET
+          {{ log.endpoint }}
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>
